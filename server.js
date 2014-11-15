@@ -8,3 +8,9 @@ var methodOverride = require('method-override');
 mongoose.connect('mongodb://keyur:wahjudi@ds053320.mongolab.com:53320/simplimy');
 app.listen(8080);
 console.log("App listening on port 8080");
+
+// Load Home Page
+app.get('/', function(req, res)
+{
+	res.sendFile('./public/index.html');
+});
