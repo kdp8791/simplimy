@@ -11,6 +11,11 @@
     body, html {
       font-family: sans-serif;
     }
+    #visualization{
+      pointer-events: none;
+
+
+    }
   </style>
 </head>
 <body>
@@ -26,12 +31,18 @@
 
   // Create a DataSet (allows two way data-binding)
   var data = new vis.DataSet([
+    {id: 0, content: '0', start: '2013-03-31'},
     {id: 1, content: '1', start: '2013-04-01'},
     {id: 2, content: '2', start: '2013-04-02'},
     {id: 3, content: '3', start: '2013-04-03'},
     {id: 4, content: '4', start: '2013-04-04'},
     {id: 5, content: '5', start: '2013-04-05'},
-    {id: 6, content: '6', start: '2013-04-06'}
+    {id: 6, content: '6', start: '2013-04-06'},
+    {id: 7, content: '7', start: '2013-04-07'},
+    {id: 8, content: '8', start: '2013-04-08'},
+    {id: 9, content: '9', start: '2013-04-09'},
+    {id: 10, content: '10', start: '2013-04-10'}
+
   ]);
 
     // Configuration for the Timeline
@@ -48,14 +59,20 @@
   
   });
   function left(){
-    currPos -= 1;
-    alert(currPos);
+    if(currPos>0){
+    currPos -= 1;    
     drawSelect();
   }
+  else
+    alert("You have reached the end of the line, literally we can't go any further!");
+  }
   function right(){
-    currPos+= 1;
-    alert(currPos);
+    if(currPos<10){
+    currPos+= 1;    
     drawSelect();
+    }
+    else
+        alert("You have reached the end, look there's no more try going the other way. :) ");
   }
   function drawSelect()
   {
@@ -76,13 +93,7 @@
 
 
   }
-  $('.content').each(function(i)
-  {
-      if($(this).text() == currPos.toString())
-      {
-        $(this).parent().addClass("selected");
-      }
-  });
+  
 
 </script>
 </body>
