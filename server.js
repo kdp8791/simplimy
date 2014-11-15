@@ -5,9 +5,10 @@ var morgan = require('morgan');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override'); 
 var database = require('./config/database'); 
+var vis = require('vis');
 
-mongoose.connect(database.url);
-app.use(express.static(__dirname + '/public')); 
+app.use(express.static(__dirname + '/views'));
+app.use(express.static(__dirname + '/public'));
 
 require('./app/routes.js')(app);
 
