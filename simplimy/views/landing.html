@@ -1,0 +1,70 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>Timeline basic demo</title>
+
+  <script src="/javascripts/vis.js"></script>
+  <script src="/javascripts/jquery-1.11.1.min.js"></script>
+  <link href="/stylesheets/vis.css" rel="stylesheet" type="text/css" />
+
+  <style type="text/css">
+    body, html {
+      font-family: sans-serif;
+    }
+  </style>
+</head>
+<body>
+<div id="visualization"></div>
+<button type="button"  onclick="left()">Left</button>
+<button type="button"  onclick="right()">Right</button>
+<script type="text/javascript">
+
+
+
+  // DOM element where the Timeline will be attached
+  var container = document.getElementById('visualization');
+
+  // Create a DataSet (allows two way data-binding)
+  var data = new vis.DataSet([
+    {id: 1, content: '1', start: '2013-04-01'},
+    {id: 2, content: '2', start: '2013-04-02'},
+    {id: 3, content: '3', start: '2013-04-03'},
+    {id: 4, content: '4', start: '2013-04-04'},
+    {id: 5, content: '5', start: '2013-04-05'},
+    {id: 6, content: '6', start: '2013-04-06'}
+  ]);
+
+    // Configuration for the Timeline
+  var options = {};
+
+  var currPos = 1;
+
+
+  // Create a Timeline
+  var timeline = new vis.Timeline(container, data, options);
+
+  $( document ).ready(function() {
+  $(".vispanel.bottom").css('display', 'none');  
+  
+  });
+  function left(){
+
+  }
+  function right(){
+
+
+  }
+
+  $('.content').each(function(i)
+  {
+      if($(this).text() == currPos.toString())
+      {
+        // found element;
+        // doo stuff && break;
+        $(this).parent().addClass("selected");
+      }
+  });
+
+</script>
+</body>
+</html>
