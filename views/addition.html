@@ -45,6 +45,15 @@
             if(frame.pose.valid)
             {
               console.log(frame.pose.type);
+              if(frame.pose.type==3)
+                {right();}
+              else if(frane.pose.type==2)
+              {
+                left();
+              }
+              else{
+                alert("Invalid position, retry");
+              }
             }
             
         });
