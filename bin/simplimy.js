@@ -1,11 +1,11 @@
-module.exports = function(io) 
+module.exports = function(io)
 {
 	var simplimy = require('myojs/template/entry.js');
 
 	var hub = new Myo.Hub();
 	var locked = true;
 
-	hub.on('ready', function() 
+	hub.on('ready', function()
 	{
 		io.on('connection', function(socket)
 	    {
@@ -13,16 +13,16 @@ module.exports = function(io)
 	    });
 	});
 
-	hub.on('connect', function() 
+	hub.on('connect', function()
 	{
 	    io.on('connection', function(socket)
 	    {
 	    	socket.emit('connected', true);
-	    	locked = false;
+
 	    });
 	});
 
-	hub.on('frame', function(frame) 
+	hub.on('frame', function(frame)
 	{
 		var ret = -1;
 		if(!locked && frame.pose.valid)
@@ -31,19 +31,20 @@ module.exports = function(io)
 	    	{
 	    		ret = frame.pose.type;
 	    	}
-			locked = true;
+
 		}
 		if(ret > -1)
 		{
 			console.log(ret);
+			io.sockets.emit('movement', ret);
 		}
-		io.on('connection', function (socket) 
+		io.on('connection', function (socket)
 		{
-			socket.emit('movement', ret);
+			io.sockets.emit('movement', ret);
 		});
 	});
 
-	hub.on('disconnect', function() 
+	hub.on('disconnect', function()
 	{
 	    io.on('connection', function(socket)
 	    {
@@ -53,12 +54,12 @@ module.exports = function(io)
 
 	io.on('connection', function(socket)
 	{
-		socket.on('unlock', function(bool)
+		socket.on('unlock', function(data)
 		{
-			console.log(locked);
-			locked = bool;
+			console.log("Server:  lock set to :" + data.value);
+			locked = data.value;
 		});
 	});
 
-	
+
 }

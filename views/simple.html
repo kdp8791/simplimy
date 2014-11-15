@@ -28,20 +28,15 @@
   var sox = io.connect('http://localhost');
   sox.on('connect', function(socket)
   {
-      socket.emit('unlock', false);
-      executeMyo();
+      sox.emit('unlock',{value : false});
+      // executeMyo();
   });
 
-  function executeMyo()
-  {
+
     sox.on('movement', function(data)
     {
-      if(parseInt(data) != -1)
-      {
-        alert(data);
-      }
+      console.log(data);
     });
-  }
 
   // DOM element where the Timeline will be attached
   var container = document.getElementById('visualization');
@@ -72,12 +67,12 @@
   var timeline = new vis.Timeline(container, data, options);
 
   $( document ).ready(function() {
-  $(".vispanel.bottom").css('display', 'none');  
-  
+  $(".vispanel.bottom").css('display', 'none');
+
   });
   function left(){
     if(currPos>0){
-    currPos -= 1;    
+    currPos -= 1;
     drawSelect();
   }
   else
@@ -85,7 +80,7 @@
   }
   function right(){
     if(currPos<10){
-    currPos+= 1;    
+    currPos+= 1;
     drawSelect();
     }
     else
@@ -110,7 +105,7 @@
 
 
   }
-  
+
 
 </script>
 </body>
