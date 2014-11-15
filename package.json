@@ -23,6 +23,7 @@
     "method-override": "^2.3.0",
     "mongoose": "^3.8.19",
     "morgan": "^1.5.0",
-    "myojs": "^0.8.18"
+    "myojs": "^0.8.18",
+    "nodemon": "^1.2.1"
   }
 }
