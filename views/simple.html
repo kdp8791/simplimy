@@ -20,8 +20,15 @@
 </head>
 <body>
 <div id="visualization"></div>
+<input type="radio" name="problemType" value="+" checked = "checked">Addition<br>
+<input type="radio" name="problemType" value="-">Subtraction<br>
+<button type="button" id = "generateProblem " onclick="getDigits()">Give me a new one</button>
+<div id="testAdd"></div>
+
 <button type="button"  onclick="left()">Left</button>
 <button type="button"  onclick="right()">Right</button>
+<button type="button"  onclick="answer()">ANSWER!</button>
+
 <script type="text/javascript">
 
 
@@ -48,20 +55,31 @@
     // Configuration for the Timeline
   var options = {};
 
-  var currPos = 1;
+  
 
 
   // Create a Timeline
   var timeline = new vis.Timeline(container, data, options);
+  var max = 10;
+  var min = 0;
+  var digit1;
+  var digit2;
 
-  $( document ).ready(function() {
+  var currPos;
+  var solution;
+
+  $( document ).ready(function() { 
   $(".vispanel.bottom").css('display', 'none');  
-  
+    getDigits();
+    drawSelect();
+
+    
+
   });
   function left(){
     if(currPos>0){
-    currPos -= 1;    
-    drawSelect();
+    currPos -= 1;
+     drawSelect();
   }
   else
     alert("You have reached the end of the line, literally we can't go any further!");
@@ -69,18 +87,41 @@
   function right(){
     if(currPos<10){
     currPos+= 1;    
+    
     drawSelect();
     }
     else
         alert("You have reached the end, look there's no more try going the other way. :) ");
   }
+
+  function answer()
+  {
+
+    if(currPos == solution)   
+      {
+       getDigits(); 
+
+        }else 
+          alert("Try again, that's not quite it :/");
+
+
+  }
+
+  function getProblemType()
+  {
+
+    var type = $("input:radio[name=problemType]:checked").val();
+    
+      return type;
+
+  }
+
   function drawSelect()
   {
     $('.content').each(function(i)
   {
       if($(this).text() == currPos.toString())
-      {        // found element;
-        // doo stuff && break;
+      {        
         $(this).parent().addClass("selected");
       }
       else if($(this).parent().hasClass("selected"))
@@ -89,11 +130,62 @@
 
 
       }
-  });
+    });
+    
+    
+  }
+  function getDigits()
+  {
+    var problemType = getProblemType();
+    if("#testAdd:has(p)")
+    {
+      $("#testAdd").empty();
+    }
 
+
+    if(problemType.toString() == "+"){
+      digit1 = Math.floor(Math.random() * (max - min)) + min;
+      digit2;
+
+  while(true)
+  {
+    digit2 = Math.floor(Math.random() * (max - min)) + min;
+    if(digit1+digit2 <= 10)
+    {
+      break;
+    }
 
   }
-  
+    currPos = digit1;
+    solution = digit1 + digit2;
+      $("#testAdd").append("<div><h1>'Problem'<h1><p>" +  digit1.toString() + " + "   + digit2.toString() +  " = ?  </p> </div>");
+       drawSelect();
+    }
+    else if(problemType.toString() == "-")
+    {
+       digit1 = Math.floor(Math.random() * (max - min)) + min;
+      digit2;
+
+      while(true)
+      {
+         digit2 = Math.floor(Math.random() * (max - min)) + min;
+         if(digit1-digit2 >= 0)
+       {
+         break;
+         }
+
+      }
+          currPos = digit1;
+         solution = digit1 - digit2;
+      $("#testAdd").append("<div><h1>'Problem'<h1><p>" +  digit1.toString() + " - "   + digit2.toString() +  " = ?  </p> </div>");
+       drawSelect();
+
+    }
+    else {
+      //Problem type is not offered
+
+    }
+  }
 
 </script>
 </body>
