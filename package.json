@@ -18,5 +18,24 @@
   "bugs": {
     "url": "https://github.com/joshuajjm/simplimy/issues"
   },
-  "homepage": "https://github.com/joshuajjm/simplimy"
+  "homepage": "https://github.com/joshuajjm/simplimy",
+  "dependencies": {
+    "underscore": "latest",
+    "ws": "latest"
+  },
+  "devDependencies": {
+    "browserify": "latest",
+    "uglify-js": "latest",
+    "chai": "latest",
+    "http-server": "latest",
+    "grunt": "latest",
+    "grunt-browserify": "latest",
+    "grunt-contrib-uglify": "latest",
+    "grunt-banner": "latest",
+    "grunt-string-replace": "latest",
+    "grunt-contrib-clean": "latest",
+    "grunt-contrib-watch": "latest",
+    "load-grunt-tasks": "latest",
+    "grunt-exec": "latest"
+  },
 }
