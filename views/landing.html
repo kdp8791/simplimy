@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>Timeline basic demo</title>
+
+  <script src="/vis.js"></script>
+  <link href="/vis.css" rel="stylesheet" type="text/css" />
+
+  <style type="text/css">
+    body, html {
+      font-family: sans-serif;
+    }
+  </style>
+</head>
+<body>
+<div id="visualization"></div>
+<button type="button" id = "myButton" onclick="hideIt()">Click Me!</button>
+<script type="text/javascript">
+
+
+
+  // DOM element where the Timeline will be attached
+  var container = document.getElementById('visualization');
+
+  // Create a DataSet (allows two way data-binding)
+  var data = new vis.DataSet([
+    {id: 1, content: '1', start: '2013-04-20'},
+    {id: 2, content: '2', start: '2013-04-14'},
+    {id: 3, content: '3', start: '2013-04-18'},
+    {id: 4, content: '4', start: '2013-04-16'},
+    {id: 5, content: '5', start: '2013-04-25'},
+    {id: 6, content: '6', start: '2013-04-27'}
+  ]);
+
+    // Configuration for the Timeline
+  var options = {};
+
+  // Create a Timeline
+  var timeline = new vis.Timeline(container, data, options);
+
+ function hideIt(){
+
+  $bottomPortion = document.getElementById('visualization');
+  $bottomPortion.setAttribute("visibility", "hidden");
+  }
+</script>
+</body>
+</html>
