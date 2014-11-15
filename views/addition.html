@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-  <title>Timeline basic demo</title>
+  <title>Addition</title>
 
   <script src="/javascripts/vis.js"></script>
   <script src="/javascripts/jquery-1.11.1.min.js"></script>
@@ -22,14 +22,11 @@
 </head>
 <body>
 <div id="visualization"></div>
-<input type="radio" name="problemType" value="+" checked = "checked">Addition<br>
-<input type="radio" name="problemType" value="-">Subtraction<br>
-<button type="button" id = "generateProblem " onclick="getDigits()">Give me a new one</button>
+<input type="radio" name="problemType" style = "display: none;"value="+" checked = "checked">Addition<br>
+
 <div id="testAdd"></div>
 
-<button type="button"  onclick="left()">Left</button>
-<button type="button"  onclick="right()">Right</button>
-<button type="button"  onclick="answer()">ANSWER!</button>
+
 
 <script type="text/javascript">
 
@@ -78,6 +75,7 @@
     {id: 8, content: '8', start: '2013-04-08'},
     {id: 9, content: '9', start: '2013-04-09'},
     {id: 10, content: '10', start: '2013-04-10'}
+    
 
   ]);
 
