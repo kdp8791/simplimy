@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/joshuajjm/simplimy/issues"
   },
-  "homepage": "https://github.com/joshuajjm/simplimy"
+  "homepage": "https://github.com/joshuajjm/simplimy",
+  "dependencies": {
+    "express": "^4.10.2"
+  }
 }
