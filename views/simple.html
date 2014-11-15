@@ -1,0 +1,229 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>Timeline basic demo</title>
+
+  <script src="/javascripts/vis.js"></script>
+  <script src="/javascripts/jquery-1.11.1.min.js"></script>
+  <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+  <script src="/javascripts/myojs-0.8.18.js"></script>
+  <link href="/stylesheets/vis.css" rel="stylesheet" type="text/css" />
+
+  <style type="text/css">
+    body, html {
+      font-family: sans-serif;
+    }
+    #visualization{
+      pointer-events: none;
+
+
+    }
+  </style>
+</head>
+<body>
+<div id="visualization"></div>
+<input type="radio" name="problemType" value="+" checked = "checked">Addition<br>
+<input type="radio" name="problemType" value="-">Subtraction<br>
+<button type="button" id = "generateProblem " onclick="getDigits()">Give me a new one</button>
+<div id="testAdd"></div>
+
+<button type="button"  onclick="left()">Left</button>
+<button type="button"  onclick="right()">Right</button>
+<button type="button"  onclick="answer()">ANSWER!</button>
+
+<script type="text/javascript">
+
+        var hub = new Myo.Hub();
+
+        hub.on('ready', function() {
+            console.log("ready");
+        });
+        hub.on('connect', function() {
+            console.log("connected!");
+        });
+        hub.on('frame', function(frame) {
+            if(frame.pose.valid)
+            {
+              console.log(frame.pose.type);
+              if(frame.pose.type==3)
+                {right();}
+              else if(frame.pose.type==2)
+              {
+                left();
+              }
+              else if(frame.pose.type==1)
+              {
+                answer();
+
+              }
+            }
+            
+        });
+        hub.on('disconnect', function() {
+            console.log("disconnect");
+        });
+
+  // DOM element where the Timeline will be attached
+  var container = document.getElementById('visualization');
+
+  // Create a DataSet (allows two way data-binding)
+  var data = new vis.DataSet([
+    {id: 0, content: '0', start: '2013-03-31'},
+    {id: 1, content: '1', start: '2013-04-01'},
+    {id: 2, content: '2', start: '2013-04-02'},
+    {id: 3, content: '3', start: '2013-04-03'},
+    {id: 4, content: '4', start: '2013-04-04'},
+    {id: 5, content: '5', start: '2013-04-05'},
+    {id: 6, content: '6', start: '2013-04-06'},
+    {id: 7, content: '7', start: '2013-04-07'},
+    {id: 8, content: '8', start: '2013-04-08'},
+    {id: 9, content: '9', start: '2013-04-09'},
+    {id: 10, content: '10', start: '2013-04-10'}
+
+  ]);
+
+    // Configuration for the Timeline
+  var options = {};
+
+  
+
+
+  // Create a Timeline
+  var timeline = new vis.Timeline(container, data, options);
+  var max = 10;
+  var min = 0;
+  var digit1;
+  var digit2;
+
+
+  var currPos;
+  var solution;
+
+  $( document ).ready(function() { 
+  $(".vispanel.bottom").css('display', 'none');  
+    getDigits();
+    drawSelect();
+
+    
+
+
+  });
+  function left(){
+    if(currPos>0){
+    currPos -= 1;
+
+     drawSelect();
+
+  }
+  else
+    alert("You have reached the end of the line, literally we can't go any further!");
+  }
+  function right(){
+    if(currPos<10){
+
+    currPos+= 1;    
+    
+
+    drawSelect();
+    }
+    else
+        alert("You have reached the end, look there's no more try going the other way. :) ");
+  }
+
+  function answer()
+  {
+
+    if(currPos == solution)   
+      {
+       getDigits(); 
+
+        }else 
+          alert("Try again, that's not quite it :/");
+
+
+  }
+
+  function getProblemType()
+  {
+
+    var type = $("input:radio[name=problemType]:checked").val();
+    
+      return type;
+
+  }
+
+  function drawSelect()
+  {
+    $('.content').each(function(i)
+  {
+      if($(this).text() == currPos.toString())
+      {        
+        $(this).parent().addClass("selected");
+      }
+      else if($(this).parent().hasClass("selected"))
+      {
+        $(this).parent().removeClass("selected");
+
+
+      }
+    });
+    
+    
+  }
+  function getDigits()
+  {
+    var problemType = getProblemType();
+    if("#testAdd:has(p)")
+    {
+      $("#testAdd").empty();
+    }
+
+
+    if(problemType.toString() == "+"){
+      digit1 = Math.floor(Math.random() * (max - min)) + min;
+      digit2;
+
+  while(true)
+  {
+    digit2 = Math.floor(Math.random() * (max - min)) + min;
+    if(digit1+digit2 <= 10)
+    {
+      break;
+    }
+
+  }
+    currPos = digit1;
+    solution = digit1 + digit2;
+      $("#testAdd").append("<div><h1>'Problem'<h1><p>" +  digit1.toString() + " + "   + digit2.toString() +  " = ?  </p> </div>");
+       drawSelect();
+    }
+    else if(problemType.toString() == "-")
+    {
+       digit1 = Math.floor(Math.random() * (max - min)) + min;
+      digit2;
+
+      while(true)
+      {
+         digit2 = Math.floor(Math.random() * (max - min)) + min;
+         if(digit1-digit2 >= 0)
+       {
+         break;
+         }
+
+      }
+          currPos = digit1;
+         solution = digit1 - digit2;
+      $("#testAdd").append("<div><h1>'Problem'<h1><p>" +  digit1.toString() + " - "   + digit2.toString() +  " = ?  </p> </div>");
+       drawSelect();
+
+    }
+    else {
+      //Problem type is not offered
+
+    }
+  }
+
+
+</script>
+</body>
+</html>
