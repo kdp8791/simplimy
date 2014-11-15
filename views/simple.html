@@ -5,6 +5,7 @@
 
   <script src="/javascripts/vis.js"></script>
   <script src="/javascripts/jquery-1.11.1.min.js"></script>
+  <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
   <link href="/stylesheets/vis.css" rel="stylesheet" type="text/css" />
 
   <style type="text/css">
@@ -24,7 +25,23 @@
 <button type="button"  onclick="right()">Right</button>
 <script type="text/javascript">
 
+  var sox = io.connect('http://localhost');
+  sox.on('connect', function(socket)
+  {
+      socket.emit('unlock', false);
+      executeMyo();
+  });
 
+  function executeMyo()
+  {
+    sox.on('movement', function(data)
+    {
+      if(parseInt(data) != -1)
+      {
+        alert(data);
+      }
+    });
+  }
 
   // DOM element where the Timeline will be attached
   var container = document.getElementById('visualization');
