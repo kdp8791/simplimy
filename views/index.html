@@ -48,13 +48,34 @@
   
   });
   function left(){
-
+    currPos -= 1;
+    alert(currPos);
+    drawSelect();
   }
   function right(){
+    currPos+= 1;
+    alert(currPos);
+    drawSelect();
+  }
+  function drawSelect()
+  {
+    $('.content').each(function(i)
+  {
+      if($(this).text() == currPos.toString())
+      {        // found element;
+        // doo stuff && break;
+        $(this).parent().addClass("selected");
+      }
+      else if($(this).parent().hasClass("selected"))
+      {
+        $(this).parent().removeClass("selected");
+
+
+      }
+  });
 
 
   }
-
   $('.content').each(function(i)
   {
       if($(this).text() == currPos.toString())
