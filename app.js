@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
 var getting_started = require('./routes/getting_started');
+var simple = require('./routes/simple');
 var myo = require('./bin/simplimy.js');
 
 var app = express();
@@ -25,6 +26,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/getting_started', getting_started);
+app.use('/simple', simple);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
