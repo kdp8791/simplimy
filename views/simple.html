@@ -6,6 +6,7 @@
   <script src="/javascripts/vis.js"></script>
   <script src="/javascripts/jquery-1.11.1.min.js"></script>
   <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+  <script src="/javascripts/myojs-0.8.18.js"></script>
   <link href="/stylesheets/vis.css" rel="stylesheet" type="text/css" />
 
   <style type="text/css">
@@ -32,18 +33,24 @@
 
 <script type="text/javascript">
 
-  var sox = io.connect('http://localhost');
-  sox.on('connect', function(socket)
-  {
-      sox.emit('unlock',{value : false});
-      // executeMyo();
-  });
+        var hub = new Myo.Hub();
 
-
-    sox.on('movement', function(data)
-    {
-      console.log(data);
-    });
+        hub.on('ready', function() {
+            console.log("ready");
+        });
+        hub.on('connect', function() {
+            console.log("connected!");
+        });
+        hub.on('frame', function(frame) {
+            if(frame.pose.valid)
+            {
+              console.log(frame.pose.type);
+            }
+            
+        });
+        hub.on('disconnect', function() {
+            console.log("disconnect");
+        });
 
   // DOM element where the Timeline will be attached
   var container = document.getElementById('visualization');
