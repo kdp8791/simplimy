@@ -14,7 +14,7 @@
 </head>
 <body>
 <div id="visualization"></div>
-<button type="button" id = "myButton" onclick="hideIt()">Click Me!</button>
+
 <script type="text/javascript">
 
 
@@ -38,11 +38,13 @@
   // Create a Timeline
   var timeline = new vis.Timeline(container, data, options);
 
- function hideIt(){
+  $( document ).ready(function() {
+  $(".vispanel.bottom").css('display', 'none');  
+  });
   
-	$bottomPortion = document.getElementsByClassName(".vispanel.bottom")[0];
-	$bottomPortion.style.display = "none";
-	}
+
+
+
 </script>
 </body>
 </html>
