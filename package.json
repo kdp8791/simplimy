@@ -20,6 +20,27 @@
   },
   "homepage": "https://github.com/joshuajjm/simplimy",
   "dependencies": {
+<<<<<<< HEAD
     "express": "^4.10.2"
   }
+=======
+    "underscore": "latest",
+    "ws": "latest"
+  },
+  "devDependencies": {
+    "browserify": "latest",
+    "uglify-js": "latest",
+    "chai": "latest",
+    "http-server": "latest",
+    "grunt": "latest",
+    "grunt-browserify": "latest",
+    "grunt-contrib-uglify": "latest",
+    "grunt-banner": "latest",
+    "grunt-string-replace": "latest",
+    "grunt-contrib-clean": "latest",
+    "grunt-contrib-watch": "latest",
+    "load-grunt-tasks": "latest",
+    "grunt-exec": "latest"
+  },
+>>>>>>> 2010b8750d7f4971613f153558c2a9e1f09d2d25
 }
