@@ -62,17 +62,17 @@
     <!-- Page Content -->
 
     <div class="content-section-a">
-
+    </br>
         <div class="container">
 
             <div class="row">
-              <div class="col-sm-6 col-md-6">
-                <a class="btn btn-green thumbnail thumbnail-border fixed-height">
+              <div class="col-xs-12 col-sm-6 col-md-6">
+                <a class="btn btn-green btn-arith thumbnail thumbnail-border fixed-height" data-arith-type="+">
                   <i class="fa fa-plus fa-8x text-center vertical-align"></i>
                 </a>
               </div>
-              <div class="col-sm-6 col-md-6 pull-right right-side-button">
-                <a class="btn btn-green thumbnail thumbnail-border fixed-height">
+              <div class="col-xs-12 col-sm-6 col-md-6">
+                <a class="btn btn-green btn-arith thumbnail thumbnail-border fixed-height" data-arith-type="-">
                   <i class="fa fa-minus fa-8x text-center vertical-align"></i>
                 </a>
               </div>
@@ -85,7 +85,7 @@
     <!-- /.content-section-a -->
 
     <div class="content-section-b">
-
+    </br>
         <div class="container">
 
             <div class="row">
@@ -187,8 +187,16 @@
 
     <script src="/javascripts/jquery-1.11.1.min.js"></script>
     <script src="/javascripts/bootstrap.js"></script>
+    <script type='text/javascript'>
+    
+    //When a user clicks the an arithmetic button determines which was clicked
+    $('.btn-arith').click(function(e) {
+       e.preventDefault();
+       $arith_type = $(this).data('arith-type');
+       console.log($arith_type);
+    });
 
+    </script>
 </body>
 
 </html>
-
