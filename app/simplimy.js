@@ -1,49 +1,33 @@
-var simplimy = require('myojs/template/entry.js');
-
-var hub = new Myo.Hub();
-
-hub.on('ready', function() 
+module.exports = function(ready_callback, connect_callback, frame_callback, disconnect_callback) 
 {
-	console.log("ready");
-});
+	var simplimy = require('myojs/template/entry.js');
+	var hub = new Myo.Hub();
+	var locked = true;
 
-hub.on('connect', function() 
-{
-    console.log("connected");
-});
+	hub.on('ready', function() 
+	{
+		ready_callback();
+	});
 
-hub.on('frame', function(frame) 
-{
-    // Get the most recent frame and report some basic information
-    // console.log("Frame id: " + frame.id + ", timestamp: " + frame.timestamp);
-    if(frame.pose.valid == true)
-    {
+	hub.on('connect', function() 
+	{
+	    connect_callback();
+	});
 
-	    switch(frame.pose.type) 
+	hub.on('frame', function(frame) 
+	{
+	    if(!locked && frame.pose.valid)
 	    {
-		    case 0:
-		        console.log("REST");
-		        break;
-		    case 1:
-		        console.log("FIST");
-		        break;
-		    case 2:
-		    	console.log("WAVE IN");
-		    	break;
-		   	case 3:
-		   		console.log("WAVE OUT");
-		   		break;
-		   	case 4:
-		   		console.log("FINGER SPREAD");
-		   		break;
-		    default:
-		    	console.log("ERR!");
-		        break;
+		    if(frame.pose.type >= 0 && frame.pose.type < 5)
+		    {
+		    	frame_callback(frame.pose.type);
+		    }
+			locked = true;
 		}
-	}
-});
+	});
 
-hub.on('disconnect', function() 
-{
-    console.log("disconnect");
-});
+	hub.on('disconnect', function() 
+	{
+	    disconnect_callback();
+	});
+}
