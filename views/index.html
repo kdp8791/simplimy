@@ -5,7 +5,7 @@
 
   <script src="/vis.js"></script>
   <link href="/vis.css" rel="stylesheet" type="text/css" />
-
+<script src = "https://code.jquery.com/jquery-1.11.1.min.js"></script>
   <style type="text/css">
     body, html {
       font-family: sans-serif;
@@ -14,7 +14,7 @@
 </head>
 <body>
 <div id="visualization"></div>
-<button type="button" id = "myButton" onclick="hideIt()">Click Me!</button>
+
 <script type="text/javascript">
 
 
@@ -38,11 +38,13 @@
   // Create a Timeline
   var timeline = new vis.Timeline(container, data, options);
 
- function hideIt(){
+  $( document ).ready(function() {
+  $(".vispanel.bottom").css('display', 'none');  
+  });
+  
 
-	$bottomPortion = document.getElementById('visualization');
-	$bottomPortion.setAttribute("visibility", "hidden");
-	}
+
+
 </script>
 </body>
 </html>

@@ -41,7 +41,7 @@
 .vis.timeline .vispanel.left,
 .vis.timeline .vispanel.right,
 .vis.timeline .vispanel.top,
-.vis.timeline .vispanel.bottom {
+.vis.timeline  {
   border: 1px #bfbfbf;
 }
 
@@ -55,7 +55,7 @@
 
 .vis.timeline .vispanel.center,
 .vis.timeline .vispanel.top,
-.vis.timeline .vispanel.bottom {
+.vis.timeline  {
   border-left-style: solid;
   border-right-style: solid;
 }
