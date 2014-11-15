@@ -1,8 +1,16 @@
-module.exports = function(app) 
+module.exports = function(router)
 {
 	// Load Home Page
-	app.get('/', function(req, res)
+	router.get('/', function(req, res)
 	{
 		res.sendFile('./views/index.html');
 	});
+
+	// Landing Page
+	router.get('/landing', function(req, res)
+	{
+		res.sendFile('./views/landing.html');
+	});
+
+
 }

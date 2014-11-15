@@ -2,24 +2,24 @@ var simplimy = require('myojs/template/entry.js');
 
 var hub = new Myo.Hub();
 
-hub.on('ready', function() 
+hub.on('ready', function()
 {
 	console.log("ready");
 });
 
-hub.on('connect', function() 
+hub.on('connect', function()
 {
     console.log("connected");
 });
 
-hub.on('frame', function(frame) 
+hub.on('frame', function(frame)
 {
     // Get the most recent frame and report some basic information
     // console.log("Frame id: " + frame.id + ", timestamp: " + frame.timestamp);
     if(frame.pose.valid == true)
     {
 
-	    switch(frame.pose.type) 
+	    switch(frame.pose.type)
 	    {
 		    case 0:
 		        console.log("REST");
@@ -43,7 +43,7 @@ hub.on('frame', function(frame)
 	}
 });
 
-hub.on('disconnect', function() 
+hub.on('disconnect', function()
 {
     console.log("disconnect");
 });

@@ -3203,7 +3203,7 @@ return /******/ (function(modules) { // webpackBootstrap
     this.xValueLabel = passValueFn;
     this.yValueLabel = passValueFn;
     this.zValueLabel = passValueFn;
-    
+
     this.filterLabel = 'time';
     this.legendLabel = 'value';
 
@@ -4351,7 +4351,7 @@ return /******/ (function(modules) { // webpackBootstrap
         ctx.textBaseline = 'middle';
       }
       ctx.fillStyle = this.colorAxis;
-      ctx.fillText('  ' + this.xValueLabel(step.getCurrent()) + '  ', text.x, text.y);    
+      ctx.fillText('  ' + this.xValueLabel(step.getCurrent()) + '  ', text.x, text.y);
 
       step.next();
     }
@@ -4408,7 +4408,7 @@ return /******/ (function(modules) { // webpackBootstrap
         ctx.textBaseline = 'middle';
       }
       ctx.fillStyle = this.colorAxis;
-      ctx.fillText('  ' + this.yValueLabel(step.getCurrent()) + '  ', text.x, text.y);    
+      ctx.fillText('  ' + this.yValueLabel(step.getCurrent()) + '  ', text.x, text.y);
 
       step.next();
     }
@@ -6987,7 +6987,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
   /**
    * used in Core to convert the options into a volatile variable
-   * 
+   *
    * @param Core
    */
   exports.convertHiddenOptions = function(body, hiddenDates) {
@@ -8927,7 +8927,7 @@ return /******/ (function(modules) { // webpackBootstrap
       var step = this.step > 5 ? this.step / 2 : 1;
       clone.setMilliseconds(Math.round(clone.getMilliseconds() / step) * step);
     }
-    
+
     return clone;
   };
 
@@ -9740,7 +9740,7 @@ return /******/ (function(modules) { // webpackBootstrap
   DataAxis.prototype.redraw = function () {
     var changeCalled = false;
     var activeGroups = 0;
-    
+
     // Make sure the line container adheres to the vertical scrolling.
     this.dom.lineContainer.style.top = this.body.domProps.scrollTop + 'px';
 
@@ -19068,14 +19068,14 @@ return /******/ (function(modules) { // webpackBootstrap
           images.callback(this);
         }
       };
-      
+
       img.onerror = function () {
   	  this.src = brokenUrl;
   	  if (images.callback) {
   		images.callback(this);
   	  }
   	};
-  	
+
       img.src = url;
     }
 
@@ -21091,7 +21091,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 43 */
 /***/ function(module, exports, __webpack_require__) {
 
-  
+
   function parseGephi(gephiJSON, options) {
     var edges = [];
     var nodes = [];
@@ -23227,7 +23227,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 56 */
 /***/ function(module, exports, __webpack_require__) {
 
-  
+
   /**
    * Expose `Emitter`.
    */
@@ -26446,7 +26446,7 @@ return /******/ (function(modules) { // webpackBootstrap
           makeGlobal();
       }
   }).call(this);
-  
+
   /* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }()), __webpack_require__(71)(module)))
 
 /***/ },
