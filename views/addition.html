@@ -42,7 +42,7 @@
             console.log("connected!");
         });
         hub.on('frame', function(frame) {
-            if(frame.pose.valid)
+             if(frame.pose.valid)
             {
               console.log(frame.pose.type);
               if(frame.pose.type==3)
@@ -51,8 +51,9 @@
               {
                 left();
               }
-              else{
-                alert("Invalid position, retry");
+              else if(frame.pose.type==1)
+              {
+                answer();
               }
             }
             
@@ -134,7 +135,7 @@
     if(currPos == solution)   
       {
        getDigits(); 
-
+       alert("You GOT IT!");
         }else 
           alert("Try again, that's not quite it :/");
 
