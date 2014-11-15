@@ -77,6 +77,18 @@
                 </a>
               </div>
             </div>
+            <div class="row">
+              <div class="col-xs-12 col-sm-6 col-md-6">
+                <a class="btn btn-green btn-arith thumbnail thumbnail-border fixed-height" data-arith-type="*">
+                  <i class="fa fa-times fa-8x text-center vertical-align"></i>
+                </a>
+              </div>
+              <div class="col-xs-12 col-sm-6 col-md-6">
+                <a class="btn btn-green btn-arith thumbnail thumbnail-border fixed-height" data-arith-type="/">
+                  <i class="fa fa-8x text-center vertical-align" style="font-size:10em"><strong>÷</strong></i>
+                </a>
+              </div>
+            </div>
 
         </div>
         <!-- /.container -->
@@ -188,7 +200,7 @@
     <script src="/javascripts/jquery-1.11.1.min.js"></script>
     <script src="/javascripts/bootstrap.js"></script>
     <script type='text/javascript'>
-    
+
     //When a user clicks the an arithmetic button determines which was clicked
     $('.btn-arith').click(function(e) {
        e.preventDefault();
@@ -197,6 +209,16 @@
     });
 
     </script>
+
+    <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+
+<script>
+  var socket = io.connect('http://localhost/testing');
+  socket.on('update', function (data) {
+    console.log(data);
+    socket.emit('my other event', { my: 'data' });
+  });
+</script>
 </body>
 
 </html>
