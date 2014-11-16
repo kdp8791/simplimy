@@ -15,7 +15,7 @@
     <link href="/stylesheets/landing-page.css" rel="stylesheet" type="text/css" />
     <link href="/stylesheets/font-awesome.css" rel="stylesheet" type="text/css" />
     <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
-
+    <script src="/javascripts/myojs-0.8.18.js"></script>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -63,16 +63,16 @@
 
     <div class="content-section-a">
     </br>
-        <div class="container">
+        <div class="container" id="block1">
 
             <div class="row">
               <div class="col-xs-12 col-sm-6 col-md-6">
-                <a href="/addition" class="btn btn-green btn-arith thumbnail thumbnail-border fixed-height" data-arith-type="+">
+                <a class="btn btn-green btn-arith thumbnail thumbnail-border fixed-height" data-arith-type="+">
                   <i class="fa fa-plus fa-8x text-center vertical-align"></i>
                 </a>
               </div>
               <div class="col-xs-12 col-sm-6 col-md-6">
-                <a href="/subtraction" class="btn btn-green btn-arith thumbnail thumbnail-border fixed-height" data-arith-type="-">
+                <a class="btn btn-green btn-arith thumbnail thumbnail-border fixed-height" data-arith-type="-">
                   <i class="fa fa-minus fa-8x text-center vertical-align"></i>
                 </a>
               </div>
@@ -96,7 +96,7 @@
     </div>
     <!-- /.content-section-a -->
 
-    <div class="content-section-b">
+    <div class="content-section-b" id="step2main" style="background-color:#2d3e50">
     </br>
         <div class="container">
 
@@ -104,11 +104,11 @@
                 <div class="col-lg-5 col-lg-offset-1 col-sm-push-6  col-sm-6">
                     <hr class="section-heading-spacer">
                     <div class="clearfix"></div>
-                    <h2 class="section-heading">3D Device Mockups<br>by PSDCovers</h2>
-                    <p class="lead">Turn your 2D designs into high quality, 3D product shots in seconds using free Photoshop actions by <a target="_blank" href="http://www.psdcovers.com/">PSDCovers</a>! Visit their website to download some of their awesome, free photoshop actions!</p>
+                    <h2 style="color:white" class="section-heading" id="step2heading">3D Device Mockups<br>by PSDCovers</h2>
+                    <p style="color:white" class="lead" id="step2lead">Turn your 2D designs into high quality, 3D product shots in seconds using free Photoshop actions by <a target="_blank" href="http://www.psdcovers.com/">PSDCovers</a>! Visit their website to download some of their awesome, free photoshop actions!</p>
                 </div>
                 <div class="col-lg-5 col-sm-pull-6  col-sm-6">
-                    <img class="img-responsive" src="img/dog.png" alt="">
+                    <img id="step2image" class="img-responsive" alt="">
                 </div>
             </div>
 
@@ -130,7 +130,7 @@
                     <p class="lead">This template features the 'Lato' font, part of the <a target="_blank" href="http://www.google.com/fonts">Google Web Font library</a>, as well as <a target="_blank" href="http://fontawesome.io">icons from Font Awesome</a>.</p>
                 </div>
                 <div class="col-lg-5 col-lg-offset-2 col-sm-6">
-                    <img class="img-responsive" src="img/phones.png" alt="">
+                    <img id="step2image" class="img-responsive" src="img/phones.png" alt="">
                 </div>
             </div>
 
@@ -200,15 +200,98 @@
     <script src="/javascripts/jquery-1.11.1.min.js"></script>
     <script src="/javascripts/bootstrap.js"></script>
 
-    <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+    <script type="text/javascript">
 
-<script>
-  var socket = io.connect('http://localhost/testing');
-  socket.on('update', function (data) {
-    console.log(data);
-    socket.emit('my other event', { my: 'data' });
-  });
-</script>
+            var hub = new Myo.Hub();
+
+            hub.on('ready', function() {
+                console.log("ready");
+            });
+            hub.on('connect', function() {
+                console.log("connected!");
+            });
+            hub.on('frame', function(frame) {
+                 if(frame.pose.valid)
+                {
+                  console.log(frame.pose.type);
+                  if(frame.pose.type==3)
+                  {
+                    console.log("Position"+$("#step2image").data("position"));
+                    if($("#step2image").data("position")=="3")//right
+                    {
+                      $("#step2main").css("background-color","#2fcc71");
+
+                      $("#step2lead").text("Great! Now lets wave our hand to the left.");
+                      $("#step2image").attr('src', "/img/white_outline_LH_wave_right@2x.png").attr("data-position-2","2").load(function(){
+                        $(this).appendTo("#step2image");
+                      });
+                    }
+                    else{
+                      $("#step2main").css("background-color","#e84c3d");
+                    }
+                  }
+                  else if(frame.pose.type==2)//left
+                  {
+                    if($("#step2image").data("position-2")=="2")
+                      {
+                        $("#step2main").css("background-color","#2fcc71");
+                        $("#step2lead").text("One more gesture, make a fist");
+                        $("#step2image").attr('src', "/img/white_outline_LH_fist@2x.png").attr("data-position-1","1").load(function(){
+                          $(this).appendTo("#step2image");
+                        });
+                      }
+                      else{
+                        $("#step2main").css("background-color","#e84c3d");
+                      }
+                  }
+                  else if(frame.pose.type==1)//fist
+                  {
+                    if($("#step2image").data("position-1")=="1")
+                    {
+                      $("#step2main").css("background-color","#2fcc71");
+                       redirect();
+                    }
+                    else{
+                      $("#step2main").css("background-color","#e84c3d");
+                    }
+                  }
+                }
+
+            });
+            hub.on('disconnect', function() {
+                console.log("disconnect");
+            });
+
+            function redirect()
+            {
+                var $option = $(".btn-arith[selected]").data("arith-type");
+                console.log($option);
+                if($option == "+"){
+                  window.location.href = "addition";
+                }
+
+            }
+
+    </script>
+
+    <script type="text/javascript">
+
+    $( ".btn-arith" ).click(function(){
+      $( "#block1" ).animate({ "height": "0px" }, "slow" );
+      $(".btn-arith").addClass("hidden")
+      $(this).attr("selected", 'selected');
+      var $selectedOption = $(this);
+      $("#step2heading").text("Getting Started");
+      $("#step2lead").text("Lets begin by positioning your hand like the figure");
+
+      var $image1 = $("#step2image").attr('src', "/img/white_outline_LH_wave_left@2x.png").attr("data-position","3").load(function(){
+        $(this).appendTo("#step2image");
+      });
+
+});
+
+
+    </script>
 </body>
 
 </html>
