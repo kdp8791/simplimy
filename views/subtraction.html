@@ -107,6 +107,7 @@
               {
 
                 getDigits();
+                reset = 0;
               }
               else if(frame.pose.type==0)
               {
@@ -173,7 +174,7 @@
      drawSelect();
   }
   else
-    $(".alert-success").remove().html("You have reached the end of the line, literally we can't go any further!");
+    $(".alert-success").html("You have reached the end of the line, literally we can't go any further!");
     
   }
   function right(){
@@ -185,7 +186,7 @@
     drawSelect();
     }
     else
-        $(".alert-success").remove().html("You have reached the end, look there's no more try going the other way. :)");
+        $(".alert-success").html("You have reached the end, look there's no more try going the other way. :)");
        
         
   }
@@ -197,10 +198,10 @@
       {
         $(".problem").html(digit1.toString() + " - "   + digit2.toString() +  " = "+ solution );
        
-       $(".alert-success").remove().html("You got it!, congratulations open your hand for a new question");
+       $(".alert-success").html("You got it!, congratulations open your hand for a new question");
        
         }else
-          $(".alert-success").remove().html("You sort of missed the mark, try again or open your hand for a new question");
+          $(".alert-success").html("You sort of missed the mark, try again or open your hand for a new question");
 
 
   }

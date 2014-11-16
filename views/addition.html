@@ -79,6 +79,7 @@
 
 <script type="text/javascript">
 
+
         var hub = new Myo.Hub();
 
         hub.on('ready', function() {
@@ -104,6 +105,7 @@
               else if(frame.pose.type==0 && reset == 2)
               {
 
+                reset = 0;
                 getDigits();
               }
               else if(frame.pose.type==0)
@@ -177,7 +179,7 @@
 
   }
   else
-    $(".alert-success").remove().html("You have reached the end of the line, literally we can't go any further!")
+    $(".alert-success").html("You have reached the end of the line, literally we can't go any further!")
     
   }
   function right(){
@@ -189,7 +191,7 @@
     drawSelect();
     }
     else
-      $(".alert-success").remove().html("You have reached the end, look there's no more try going the other way. :) ")
+      $(".alert-success").html("You have reached the end, look there's no more try going the other way. :) ")
     
         
   }
@@ -199,13 +201,13 @@
 
     if(currPos == solution)
       {
-       $(".alert-success").remove().html("You GOT IT! Give any command to continue");
+       $(".alert-success").html("You GOT IT! Give any command to continue");
        
        $(".problem").html(digit1.toString() + " + "   + digit2.toString() +  " = " + solution.toString());
        
        
         }else
-        $(".alert-success").remove().html("Try again, that's not quite it :/");
+        $(".alert-success").html("Try again, that's not quite it :/");
           
 
 
