@@ -30,20 +30,35 @@
 
 
 <script type="text/javascript">
+         var handWasHere = false; 
+        var controller = new Leap.Controller({
+                         enableGestures: true,
+                         frameEventName: 'animationFrame'
+                         });
 
-        var controller = new Leap.Controller()
-        controller.connect();
         controller.on("frame", function(frame) {
           var hand = frame.hands[0];
           if(hand)
           {
-              var finger = hand.fingers[0];
-              if(finger.valid())
-              {
-                console.log("WOOHOO!");
-              }
+            
+            var finger = hand.fingers[0].finger;
+            if( finger == true && handWasHere == false)
+            {
+              addToStack();
+              console.log("I HAVE A FINGER ......");
+              handWasHere = true;
+            }
+            
+
+          }
+          else{
+
+            handWasHere = false;
+            console.log("Where is your finger?");
           }
         });
+
+        controller.connect();
 
         var hub = new Myo.Hub();
 
@@ -85,7 +100,7 @@
   var value = new String();
 
   var currPos;
-  var currStack;
+  var currStack = 0;
   var currItrOverValues = 0;
   var solution;
 
@@ -107,7 +122,7 @@
   function push()
   {
       currItrOverValues += currStack;
-      //currStack = 0; Add in afterwards when leap is added
+      currStack = 0; 
       drawStack();
   }
 
@@ -124,6 +139,12 @@
 
 
   }
+
+  function addToStack(){
+      currStack ++;
+      $("#value").empty().append(currStack.toString());
+
+    }
   function answer()
   {
 
@@ -186,9 +207,9 @@
       digit1 = Math.floor(Math.random() * (max - min)) + min;
       digit2 = Math.floor(Math.random() * (max - min)) + min;
       solution = digit1 * digit2;
-      currStack =  digit2;
+      
       for (var i = 0; i < digit2; i++) {
-            value += "@";
+            value += i.toString();
            };
       $("#Problem").append("<p>  " + digit1.toString() + " X "  +  digit2.toString() + " = ? </p>");
       $("#value").append("<p> Value: " + value + "<p>");
