@@ -1,0 +1,190 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>Multiplication</title>
+
+  <script src="//js.leapmotion.com/leap-0.6.3.min.js"></script>
+  <script src="/javascripts/vis.js"></script>
+  <script src="/javascripts/jquery-1.11.1.min.js"></script>
+  <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+  <script src="/javascripts/myojs-0.8.18.js"></script>
+  <link href="/stylesheets/vis.css" rel="stylesheet" type="text/css" />
+
+  <style type="text/css">
+    body, html {
+      font-family: sans-serif;
+    }
+  
+  </style>
+</head>
+<body>
+<div id="visualization"></div>
+<input type="radio" name="problemType" style = "display: none;"value="x" checked = "checked">
+
+<div id="Problem"></div>
+<div id = "iterations"></div>
+<div id = "value"></div>
+
+
+
+
+
+<script type="text/javascript">
+
+        var hub = new Myo.Hub();
+
+        hub.on('ready', function() {
+            console.log("ready");
+        });
+        hub.on('connect', function() {
+            console.log("connected!");
+        });
+        hub.on('frame', function(frame) {
+             if(frame.pose.valid)
+            {
+              console.log(frame.pose.type);
+              if(frame.pose.type== 2)
+              {
+                 push();
+
+              }
+              else if(frame.pose.type==1)
+              {
+
+                answer();
+
+              }
+            }
+            
+        });
+        hub.on('disconnect', function() {
+            console.log("disconnect");
+        });
+
+  
+
+  
+  var max = 10;
+  var min = 0;
+  var digit1;
+  var digit2;
+  var value = new String();
+
+  var currPos;
+  var currStack;
+  var currItrOverValues = 0;
+  var solution;
+
+  $( document ).ready(function() { 
+  
+    getDigits();
+    drawStack();
+    
+  });
+  
+  function getProblemType()
+  {
+
+    var type = $("input:radio[name=problemType]:checked").val();
+    
+      return type;
+
+  }
+  function push()
+  {
+      currItrOverValues += currStack;
+      //currStack = 0; Add in afterwards when leap is added
+      drawStack();
+  }
+
+  function drawStack()
+  {
+      $("#iterations").empty();
+
+      for(i = 0; i < currItrOverValues; i++)
+      {
+
+        $("#iterations").append(value);
+
+      }
+
+
+  }
+  function answer()
+  {
+
+    if(currItrOverValues == solution)   
+      {
+       getDigits(); 
+       alert("You GOT IT!");
+        }else 
+          alert("Try again, that's not quite it :/");  }  
+
+  function getDigits()
+  {
+    var problemType = getProblemType();
+    
+    if("#testAdd:has(p)")
+    {
+      $("#testAdd").empty();
+    }
+
+    if(problemType.toString() == "+"){
+            digit1 = Math.floor(Math.random() * (max - min)) + min;
+            digit2;
+
+            while(true)
+             {
+                digit2 = Math.floor(Math.random() * (max - min)) + min;
+               if(digit1+digit2 <= 10)
+              {
+                break;
+              }
+      
+            }
+             currPos = digit1;
+             solution = digit1 + digit2;
+            $("#testAdd").append("<div><h1>'Problem'<h1><p>" +  digit1.toString() + " + "   + digit2.toString() +  " = ?  <     /p> </div>");
+             drawSelect();
+      }
+    else if(problemType.toString() == "-")
+    {
+        digit1 = Math.floor(Math.random() * (max - min)) + min;
+        digit2;
+
+        while(true)
+        {
+          digit2 = Math.floor(Math.random() * (max - min)) + min;
+          if(digit1-digit2 >= 0)
+            {
+              break;
+            }
+
+        }
+          currPos = digit1;
+         solution = digit1 - digit2;
+          $("#testAdd").append("<div><h1>'Problem'<h1><p>" +  digit1.toString() + " - "   + digit2.toString() +  " = ?  </p> </div>");
+        drawSelect();
+
+    }
+    else if(problemType.toString() == "x"){
+      //Problem type is not offered
+      digit1 = Math.floor(Math.random() * (max - min)) + min;
+      digit2 = Math.floor(Math.random() * (max - min)) + min;
+      solution = digit1 * digit2;
+      currStack =  digit2;
+      for (var i = 0; i < digit2; i++) {
+            value += "@";
+           };
+      $("#Problem").append("<p>  " + digit1.toString() + " X "  +  digit2.toString() + " = ? </p>");
+      $("#value").append("<p> Value: " + value + "<p>");
+
+    }
+        
+    }
+  
+
+
+</script>
+</body>
+</html>
