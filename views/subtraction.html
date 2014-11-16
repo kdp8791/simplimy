@@ -184,7 +184,7 @@
 
     if(currPos == solution)
       {
-        $(".problem").remove().append(digit1.toString() + " - "   + digit2.toString() +  " = "+ solution );
+        $(".problem").html(digit1.toString() + " - "   + digit2.toString() +  " = "+ solution );
        
        $(".alert-success").remove().html("You got it!, congratulations open your hand for a new question");
        
