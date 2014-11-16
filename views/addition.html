@@ -102,23 +102,7 @@
               {
                 answer();
               }
-              else if(frame.pose.type==0 && reset == 2)
-              {
-
-                reset = 0;
-                getDigits();
-              }
-              else if(frame.pose.type==0)
-              {
-                reset  ++;
-
-              }
-              else
-              {
-                reset = 0;
-              }
-
-            }
+              
 
         });
         hub.on('disconnect', function() {
