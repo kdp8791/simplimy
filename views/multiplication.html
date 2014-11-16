@@ -156,7 +156,7 @@
         controller.connect();
 
         var hub = new Myo.Hub();
-
+        var reset = 0;
         hub.on('ready', function() {
             console.log("ready");
         });
@@ -170,15 +170,28 @@
               if(frame.pose.type== 2)
               {
                  push();
+                 reset  = 0;
               }
               else if(frame.pose.type==1)
               {
                 answer();
+                reset  = 0;
+              }
+              else if(frame.pose.type==0 && reset == 2)
+              {
+
+                getDigits();
               }
               else if(frame.pose.type==0)
               {
-                getDigits();
+                reset  ++;
+
               }
+              else
+              {
+                reset = 0;
+              }
+
             }
             
         });

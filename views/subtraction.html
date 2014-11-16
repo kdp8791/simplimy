@@ -103,10 +103,21 @@
               {
                 answer();
               }
-              else if(frame.pose.type==0)
+              else if(frame.pose.type==0 && reset == 2)
               {
+
                 getDigits();
               }
+              else if(frame.pose.type==0)
+              {
+                reset  ++;
+
+              }
+              else
+              {
+                reset = 0;
+              }
+
             }
 
         });
