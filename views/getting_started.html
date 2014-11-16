@@ -38,7 +38,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="/">Simplimy</a>
+                <a class="navbar-brand" href="#">Simplimy</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -104,11 +104,11 @@
                 <div class="col-lg-5 col-lg-offset-1 col-sm-push-6  col-sm-6">
                     <hr class="section-heading-spacer">
                     <div class="clearfix"></div>
-                    <h2 style="color:white" class="section-heading" id="step2heading">3D Device Mockups<br>by PSDCovers</h2>
-                    <p style="color:white" class="lead" id="step2lead">Turn your 2D designs into high quality, 3D product shots in seconds using free Photoshop actions by <a target="_blank" href="http://www.psdcovers.com/">PSDCovers</a>! Visit their website to download some of their awesome, free photoshop actions!</p>
+                    <h2 style="color:white" class="section-heading" id="step2heading">Using the Thalmic Myo. </h2>
+                    <p style="color:white" class="lead" id="step2lead">We know arithemitic can get boring. At Simplimy we believe that solving equation should be more fun and interactive. Utilizing the Thalmic Myo we are able to create a more comprehensible way for you to learn. </p>
                 </div>
                 <div class="col-lg-5 col-sm-pull-6  col-sm-6">
-                    <img id="step2image" class="img-responsive" alt="">
+                    <img id="step2image" class="img-responsive" alt="" src="img/myo_logo_tagline_white.png">
                 </div>
             </div>
 
@@ -126,11 +126,11 @@
                 <div class="col-lg-5 col-sm-6">
                     <hr class="section-heading-spacer">
                     <div class="clearfix"></div>
-                    <h2 class="section-heading">Google Web Fonts and<br>Font Awesome Icons</h2>
-                    <p class="lead">This template features the 'Lato' font, part of the <a target="_blank" href="http://www.google.com/fonts">Google Web Font library</a>, as well as <a target="_blank" href="http://fontawesome.io">icons from Font Awesome</a>.</p>
+                    <h2 class="section-heading">Leap Motion</h2>
+                    <p class="lead">We also provide a new take on arithmetic equations using the Leap Motion.</p>
                 </div>
                 <div class="col-lg-5 col-lg-offset-2 col-sm-6">
-                    <img id="step2image" class="img-responsive" src="img/phones.png" alt="">
+                    <img id="step2image" class="img-responsive" src="img/logo-leap.png" alt="">
                 </div>
             </div>
 
@@ -146,7 +146,7 @@
 
             <div class="row">
                 <div class="col-lg-6">
-                    <h2>Connect to Start Bootstrap:</h2>
+                    <h2>Connect with Simplimy</h2>
                 </div>
                 <div class="col-lg-6">
                     <ul class="list-inline banner-social-buttons">
@@ -252,7 +252,7 @@
                       {
                         $("#step2main").css("background-color","#2fcc71");
                          $("#step2heading").text("Great, Lets get started!");
-                         $("#step2lead").html('<a onclick="redirect()" class = "btn btn-default">Continue >> </a> ');
+                         $("#step2lead").html('<a onclick=  "redirect()" class = "btn btn-default">Continue >> </a> ');
                       }
                       else{
                         $("#step2main").css("background-color","#e84c3d");
@@ -275,6 +275,12 @@
                 }
                 else if($option == "-"){
                   window.location.href = "subtraction";
+                }
+                else if($option == "*"){
+                  window.location.href = "multiplication";
+                }
+                else if($option == "/"){
+                  window.location.href = "division";
                 }
 
             }

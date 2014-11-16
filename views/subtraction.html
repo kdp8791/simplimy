@@ -103,7 +103,7 @@
               {
                 answer();
               }
-              
+
             }
 
         });
@@ -160,7 +160,7 @@
   }
   else
     $(".alert-success").html("You have reached the end of the line, literally we can't go any further!");
-    
+
   }
   function right(){
     if(currPos<10){
@@ -172,8 +172,8 @@
     }
     else
         $(".alert-success").html("You have reached the end, look there's no more try going the other way. :)");
-       
-        
+
+
   }
 
   function answer()
@@ -182,9 +182,9 @@
     if(currPos == solution)
       {
         $(".problem").html(digit1.toString() + " - "   + digit2.toString() +  " = "+ solution );
-       
+
        $(".alert-success").html("You got it!, congratulations open your hand for a new question");
-       
+
         }else
           $(".alert-success").html("You sort of missed the mark, try again or open your hand for a new question");
 
