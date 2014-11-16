@@ -215,10 +215,8 @@
   {
       if(currStack == 0)
       {
-
         $(".alert-success").empty().html("You can not push an empty stack");
-        break;
-
+        return;
       }
       currItrOverValues += currStack;
       currStack = 0; 
