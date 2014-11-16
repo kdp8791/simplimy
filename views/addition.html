@@ -64,6 +64,7 @@
   <p>&nbsp;</p><p>&nbsp;</p>
     <div class="content-section-a">
       </br>
+        <div class="alert alert-success" role="alert"></div>
         <div class="container" id="block1">
           <h1 style="font-size: 125px;"><span class="problem" style="color:#2a80b9;"></span></h1>
       </div>
@@ -99,6 +100,10 @@
               else if(frame.pose.type==1)
               {
                 answer();
+              }
+              else if(frame.pose.type==0)
+              {
+                getDigits();
               }
             }
 
@@ -161,7 +166,8 @@
 
   }
   else
-    alert("You have reached the end of the line, literally we can't go any further!");
+    $(".alert-success").remove().html("You have reached the end of the line, literally we can't go any further!")
+    
   }
   function right(){
     if(currPos<10){
@@ -172,7 +178,9 @@
     drawSelect();
     }
     else
-        alert("You have reached the end, look there's no more try going the other way. :) ");
+      $(".alert-success").remove().html("You have reached the end, look there's no more try going the other way. :) ")
+    
+        
   }
 
   function answer()
@@ -180,10 +188,14 @@
 
     if(currPos == solution)
       {
-       getDigits();
-       alert("You GOT IT!");
+       $(".alert-success").remove().html("You GOT IT! Give any command to continue");
+       
+       $(".problem").html(digit1.toString() + " + "   + digit2.toString() +  " = " + solution.toString());
+       
+       
         }else
-          alert("Try again, that's not quite it :/");
+        $(".alert-success").remove().html("Try again, that's not quite it :/");
+          
 
 
   }

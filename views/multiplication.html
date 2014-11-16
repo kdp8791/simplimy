@@ -175,6 +175,10 @@
               {
                 answer();
               }
+              else if(frame.pose.type==0)
+              {
+                getDigits();
+              }
             }
             
         });
@@ -240,7 +244,8 @@
 
     if(currItrOverValues == solution)   
       {
-       getDigits(); 
+        $("#testAdd").empty().append("<div><h1>'Problem'<h1><p>" +  digit1.toString() + " + "   + digit2.toString() +  " = " + solution.toString() + "  <     /p> </div>");
+       
        
        $(".alert-success").empty().html("You GOT IT!");
        $('.dots').empty();
@@ -272,7 +277,7 @@
             }
              currPos = digit1;
              solution = digit1 + digit2;
-            $("#testAdd").append("<div><h1>'Problem'<h1><p>" +  digit1.toString() + " + "   + digit2.toString() +  " = ?  <     /p> </div>");
+            $("#testAdd").empty().append("<div><h1>'Problem'<h1><p>" +  digit1.toString() + " + "   + digit2.toString() +  " = ?  <     /p> </div>");
              drawSelect();
       }
     else if(problemType.toString() == "-")
