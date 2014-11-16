@@ -62,7 +62,7 @@
     <!-- Page Content -->
 
     <div class="content-section-a">
-    </br>
+    <h3 class= "text-center" id="head"> Select a Challenge</h3>
         <div class="container" id="block1">
 
             <div class="row">
@@ -223,7 +223,7 @@
 
                       $("#step2lead").text("Great! Now lets wave our hand to the left.");
                       $("#step2image").attr('src', "/img/white_outline_LH_wave_right@2x.png").attr("data-position-2","2").load(function(){
-                        $(this).appendTo("#step2image");
+                          $("#step2image").replaceWith(this);
                       });
                     }
                     else{
@@ -237,7 +237,7 @@
                         $("#step2main").css("background-color","#2fcc71");
                         $("#step2lead").text("One more gesture, make a fist");
                         $("#step2image").attr('src', "/img/white_outline_LH_fist@2x.png").attr("data-position-1","1").load(function(){
-                          $(this).appendTo("#step2image");
+                          $("#step2image").replaceWith(this);
                         });
                       }
                       else{
@@ -249,7 +249,8 @@
                     if($("#step2image").data("position-1")=="1")
                     {
                       $("#step2main").css("background-color","#2fcc71");
-                       redirect();
+                       $("#step2heading").text("Great, Lets get started!");
+                       $("#step2lead").html('<a onclick:"redirect()" class = "btn btn-default">Continue >> </a> ');
                     }
                     else{
                       $("#step2main").css("background-color","#e84c3d");
@@ -265,9 +266,12 @@
             function redirect()
             {
                 var $option = $(".btn-arith[selected]").data("arith-type");
-                console.log($option);
+                //console.log($option);
                 if($option == "+"){
                   window.location.href = "addition";
+                }
+                else if($option == "-"){
+                  window.location.href = "subtraction";
                 }
 
             }
@@ -280,13 +284,29 @@
       $( "#block1" ).animate({ "height": "0px" }, "slow" );
       $(".btn-arith").addClass("hidden")
       $(this).attr("selected", 'selected');
+
       var $selectedOption = $(this);
+
+      if($selectedOption.data("arith-type") == '+'){
+        $("#head").text("Selected Challenge: Addition");
+      }
+      else if($selectedOption.data("arith-type") == '-'){
+        $("#head").text("Selected Challenge: Subtraction");
+      }
+      else if($selectedOption.data("arith-type") == '*'){
+        $("#head").text("Selected Challenge: Multiplication");
+      }
+      else if($selectedOption.data("arith-type") == '/'){
+        $("#head").text("Selected Challenge: Division");
+      }
+      else{}
       $("#step2heading").text("Getting Started");
       $("#step2lead").text("Lets begin by positioning your hand like the figure");
 
       var $image1 = $("#step2image").attr('src', "/img/white_outline_LH_wave_left@2x.png").attr("data-position","3").load(function(){
-        $(this).appendTo("#step2image");
+          $("#step2image").replaceWith(this);
       });
+
 
 });
 
