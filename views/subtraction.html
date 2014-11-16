@@ -8,10 +8,18 @@
   <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
   <script src="/javascripts/myojs-0.8.18.js"></script>
   <link href="/stylesheets/vis.css" rel="stylesheet" type="text/css" />
+  <link href="/stylesheets/bootstrap.css" rel="stylesheet" type="text/css" />
 
   <style type="text/css">
-    body, html {
-      font-family: sans-serif;
+    @import url(http://fonts.googleapis.com/css?family=Fredericka+the+Great);
+    body {
+      text-align: center;
+    }
+
+    h1{
+      font-family: 'Fredericka the Great', cursive;
+      font-weight: 400;
+      font-size: 3em;
     }
     #visualization{
       pointer-events: none;
@@ -21,11 +29,53 @@
   </style>
 </head>
 <body>
-<div id="visualization"></div>
 
-<input type="radio" name="problemType" style = "display: none" value= "-" checked = "checked">Subtraction<br>
+  <!-- Navigation -->
+  <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="/">Simplimy</a>
+          </div>
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <ul class="nav navbar-nav navbar-right">
+                  <li>
+                      <a href="#">About</a>
+                  </li>
+                  <li>
+                      <a href="#">Services</a>
+                  </li>
+                  <li>
+                      <a href="#">Contact</a>
+                  </li>
+              </ul>
+          </div>
+          <!-- /.navbar-collapse -->
+      </div>
+      <!-- /.container -->
+  </nav>
 
-<div id="testAdd"></div>
+  <p>&nbsp;</p><p>&nbsp;</p>
+    <div class="content-section-a">
+      </br>
+        <div class="container" id="block1">
+          <h1 style="font-size: 125px;"><span class="problem" style="color:#2a80b9;"></span></h1>
+      </div>
+    </div>
+  <p>&nbsp;</p><p>&nbsp;</p>
+
+    <div class="content-section-b">
+      <div class="container">
+        <div id="visualization"></div>
+      </div>
+    </div>
 
 
 <script type="text/javascript">
@@ -163,33 +213,7 @@
   }
   function getDigits()
   {
-    var problemType = getProblemType();
-    if("#testAdd:has(p)")
-    {
-      $("#testAdd").empty();
-    }
-
-    if(problemType.toString() == "+"){
       digit1 = Math.floor(Math.random() * (max - min)) + min;
-      digit2;
-
-  while(true)
-  {
-    digit2 = Math.floor(Math.random() * (max - min)) + min;
-    if(digit1+digit2 <= 10)
-    {
-      break;
-    }
-
-  }
-    currPos = digit1;
-    solution = digit1 + digit2;
-      $("#testAdd").append("<div><h1>'Problem'<h1><p>" +  digit1.toString() + " + "   + digit2.toString() +  " = ?  </p> </div>");
-       drawSelect();
-    }
-    else if(problemType.toString() == "-")
-    {
-       digit1 = Math.floor(Math.random() * (max - min)) + min;
       digit2;
 
       while(true)
@@ -201,16 +225,10 @@
          }
 
       }
-          currPos = digit1;
-         solution = digit1 - digit2;
-      $("#testAdd").append("<div><h1>'Problem'<h1><p>" +  digit1.toString() + " - "   + digit2.toString() +  " = ?  </p> </div>");
+      currPos = digit1;
+      solution = digit1 - digit2;
+      $(".problem").append(digit1.toString() + " - "   + digit2.toString() +  " = ?");
        drawSelect();
-
-    }
-    else {
-      //Problem type is not offered
-
-    }
   }
 
 
