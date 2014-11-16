@@ -82,7 +82,7 @@
   var min = 0;
   var digit1;
   var digit2;
-
+  var value = new String();
 
   var currPos;
   var currStack;
@@ -92,6 +92,7 @@
   $( document ).ready(function() { 
   
     getDigits();
+    drawStack();
     
   });
   
@@ -136,7 +137,7 @@
   function getDigits()
   {
     var problemType = getProblemType();
-    var value = new String();
+    
     if("#testAdd:has(p)")
     {
       $("#testAdd").empty();
@@ -190,7 +191,7 @@
             value += "@";
            };
       $("#Problem").append("<p>  " + digit1.toString() + " X "  +  digit2.toString() + " = ? </p>");
-      $("#value").append("<p>" + value + "<p>");
+      $("#value").append("<p> Value: " + value + "<p>");
 
     }
         
