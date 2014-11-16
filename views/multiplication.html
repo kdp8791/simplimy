@@ -75,13 +75,10 @@
               if(frame.pose.type== 2)
               {
                  push();
-
               }
               else if(frame.pose.type==1)
               {
-
                 answer();
-
               }
             }
             
@@ -93,7 +90,7 @@
   
 
   
-  var max = 10;
+  var max = 6;
   var min = 0;
   var digit1;
   var digit2;
@@ -129,15 +126,10 @@
   function drawStack()
   {
       $("#iterations").empty();
-
       for(i = 0; i < currItrOverValues; i++)
       {
-
-        $("#iterations").append(value);
-
+        $("#iterations").append(i.toString());
       }
-
-
   }
 
   function addToStack(){
@@ -198,6 +190,7 @@
         }
           currPos = digit1;
          solution = digit1 - digit2;
+          $("#testAdd").empty();
           $("#testAdd").append("<div><h1>'Problem'<h1><p>" +  digit1.toString() + " - "   + digit2.toString() +  " = ?  </p> </div>");
         drawSelect();
 
@@ -208,11 +201,9 @@
       digit2 = Math.floor(Math.random() * (max - min)) + min;
       solution = digit1 * digit2;
       
-      for (var i = 0; i < digit2; i++) {
-            value += i.toString();
-           };
+     
       $("#Problem").append("<p>  " + digit1.toString() + " X "  +  digit2.toString() + " = ? </p>");
-      $("#value").append("<p> Value: " + value + "<p>");
+      $("#value").append("<p> Value: 0 <p>");
 
     }
         
