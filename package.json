@@ -25,6 +25,7 @@
     "express": "^4.10.2",
     "http": "0.0.0",
     "jade": "^1.7.0",
+    "leapjs": "^0.6.2",
     "less": "^2.0.0",
     "method-override": "^2.3.0",
     "mongoose": "^3.8.19",
