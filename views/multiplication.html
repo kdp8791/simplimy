@@ -43,7 +43,17 @@
              if(frame.pose.valid)
             {
               console.log(frame.pose.type);
-              
+              if(frame.pose.type== 2)
+              {
+                 push();
+
+              }
+              else if(frame.pose.type==1)
+              {
+
+                answer();
+
+              }
             }
             
         });
@@ -61,6 +71,8 @@
 
 
   var currPos;
+  var currStack;
+  var currItrOverValues
   var solution;
 
   $( document ).ready(function() { 
@@ -77,6 +89,35 @@
       return type;
 
   }
+  function push()
+  {
+      currItrOverValues += currStack;
+      //currStack = 0; Add in afterwards when leap is added
+      drawStack();
+  }
+
+  function drawStack()
+  {
+      $(".iterations").empty();
+
+      for(i = 0; i < currItrOverValues; i++)
+      {
+
+        $(".iterations").append(value);
+
+      }
+
+
+  }
+  function answer()
+  {
+
+    if(currItrOverValues == solution)   
+      {
+       getDigits(); 
+       alert("You GOT IT!");
+        }else 
+          alert("Try again, that's not quite it :/");  }  
 
   function getDigits()
   {
@@ -130,11 +171,13 @@
       digit1 = Math.floor(Math.random() * (max - min)) + min;
       digit2 = Math.floor(Math.random() * (max - min)) + min;
       solution = digit1 * digit2;
+      currStack =  digit2;
       for (var i = 0; i < digit2; i++) {
             value += "@";
            };
       $("#Problem").append("<p>  " + digit1.toString() + " X "  +  digit2.toString() + " = ? </p>");
       $("#value").append("<p>" + value + "<p>");
+
     }
         
     }
