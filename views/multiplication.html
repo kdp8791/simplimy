@@ -108,7 +108,7 @@
     <div class="content-section-a">
       </br>
         <div class="alert alert-success" role="alert"></div>
-        <div class="container" id="block1">
+        <div class="container anel panel-default" id="block1">
           <h1 style="font-size: 125px;"><span class="problem" style="color:#27ae61;"></span></h1>
       </div>
     </div>
@@ -156,7 +156,7 @@
         controller.connect();
 
         var hub = new Myo.Hub();
-        var reset = 0;
+        
         hub.on('ready', function() {
             console.log("ready");
         });
@@ -170,28 +170,14 @@
               if(frame.pose.type== 2)
               {
                  push();
-                 reset  = 0;
+                 
               }
               else if(frame.pose.type==1)
               {
                 answer();
-                reset  = 0;
+                
               }
-              else if(frame.pose.type==0 && reset == 2)
-              {
 
-                getDigits();
-                reset = 0;
-              }
-              else if(frame.pose.type==0)
-              {
-                reset  ++;
-
-              }
-              else
-              {
-                reset = 0;
-              }
 
             }
             
@@ -237,6 +223,7 @@
         return;
       }
       currItrOverValues += currStack;
+      $('.dots').append('<');
       currStack = 0; 
       drawStack();
   }
@@ -258,7 +245,7 @@
 
     if(currItrOverValues == solution)   
       {
-        $("#testAdd").empty().append("<div><h1>'Problem'<h1><p>" +  digit1.toString() + " + "   + digit2.toString() +  " = " + solution.toString() + "  <     /p> </div>");
+        $("#testAdd").empty().append("<div><h1>'Problem'<h1><p>" +  digit1.toString() + " + "   + digit2.toString() +  " = " + solution.toString() + "  </p> </div>");
        
        
        $(".alert-success").empty().html("You GOT IT!");
