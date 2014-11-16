@@ -10,6 +10,7 @@ var getting_started = require('./routes/getting_started');
 var addition = require('./routes/addition');
 var subtraction = require('./routes/subtraction');
 var multiplication = require('./routes/multiplication');
+var equationBuilder = require('./routes/equationBuilder');
 
 var app = express();
 //var server = app.listen(3000);
@@ -33,6 +34,7 @@ app.use('/getting_started', getting_started);
 app.use('/addition', addition);
 app.use('/subtraction', subtraction);
 app.use('/multiplication', multiplication);
+app.use('/equationBuilder', equationBuilder);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
     var err = new Error('Not Found');
