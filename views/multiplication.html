@@ -21,7 +21,8 @@
 <input type="radio" name="problemType" style = "display: none;"value="x" checked = "checked">
 
 <div id="Problem"></div>
-
+<div id = "iterations"></div>
+<div id = "value"></div>
 
 
 
@@ -79,6 +80,7 @@
   function getDigits()
   {
     var problemType = getProblemType();
+    var value = new String();
     if("#testAdd:has(p)")
     {
       $("#testAdd").empty();
@@ -127,7 +129,11 @@
       digit1 = Math.floor(Math.random() * (max - min)) + min;
       digit2 = Math.floor(Math.random() * (max - min)) + min;
       solution = digit1 * digit2;
+      for (var i = 0; i < digit2; i++) {
+            value += "@";
+           };
       $("#Problem").append("<p>  " + digit1.toString() + " X "  +  digit2.toString() + " = ? </p>");
+      $("#value").append("<p>" + value + "<p>");
     }
         
     }
