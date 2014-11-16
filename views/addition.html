@@ -64,7 +64,7 @@
   <p>&nbsp;</p><p>&nbsp;</p>
     <div class="content-section-a">
       </br>
-        <div class="alert alert-success" role="alert"></div>
+        <div id="alertcustom" class="alert alert-success" role="alert"></div>
         <div class="container well" id="block1">
           <h1 style="font-size: 125px;"><span class="problem" style="color:#2a80b9;"></span></h1>
       </div>
@@ -164,8 +164,8 @@
 
   }
   else
-    $(".alert-success").html("You have reached the end of the line, literally we can't go any further!")
-    
+    $("#alertcustom").html("You have reached the end of the line, literally we can't go any further!")
+
   }
   function right(){
     if(currPos<10){
@@ -176,9 +176,9 @@
     drawSelect();
     }
     else
-      $(".alert-success").html("You have reached the end, look there's no more try going the other way. :) ")
-    
-        
+      $("#alertcustom").html("You have reached the end, look there's no more try going the other way. :) ")
+
+
   }
 
   function answer()
@@ -186,14 +186,14 @@
 
     if(currPos == solution)
       {
-       $(".alert-success").html("You GOT IT! Give any command to continue");
-       
+       $("#alertcustom").html("You GOT IT! Give any command to continue").removeClass("alert-danger").addClass("alert-success").removeClass("hidden");
+
        $(".problem").html(digit1.toString() + " + "   + digit2.toString() +  " = " + solution.toString());
-       
-       
+
+
         }else
-        $(".alert-success").html("Try again, that's not quite it :/");
-          
+        $("#alertcustom").html("Try again, that's not quite it :/").removeClass("alert-success").addClass("alert-danger").removeClass("hidden");
+
 
 
   }
@@ -207,7 +207,7 @@
 
   }
 
- 
+
 
   function drawSelect()
   {
@@ -227,6 +227,7 @@
   }
   function getDigits()
   {
+    $("#alertcustom").addClass("hidden");
       digit1 = Math.floor(Math.random() * (max - min)) + min;
       digit2;
   while(true)
