@@ -161,17 +161,19 @@
 
 .vis.timeline .item {
   position: absolute;
-  color: #1A1A1A;
-  border-color: #97B0F8;
+  color: #ddd;
+  font-size: 1.25em;
+  border-color: #2a80b9;
   border-width: 1px;
-  background-color: #D5DDF6;
+  background-color: #2a80b9;
   display: inline-block;
-  padding: 5px;
+  padding: 30px;
+  border-radius: 60px !important;
 }
 
 .vis.timeline .item.selected {
-  border-color: #FFC200;
-  background-color: #FFF785;
+  border-color: #27ae61;
+  background-color: #27ae61;
 
   /* z-index must be higher than the z-index of custom time bar and current time bar */
   z-index: 2;
