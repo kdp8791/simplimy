@@ -31,6 +31,20 @@
 
 <script type="text/javascript">
 
+        var controller = new Leap.Controller()
+        controller.connect();
+        controller.on("frame", function(frame) {
+          var hand = frame.hands[0];
+          if(hand)
+          {
+              var finger = hand.fingers[0];
+              if(finger.valid())
+              {
+                console.log("WOOHOO!");
+              }
+          }
+        });
+
         var hub = new Myo.Hub();
 
         hub.on('ready', function() {
