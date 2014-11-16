@@ -66,7 +66,7 @@
     <div class="content-section-a">
       </br>
         <div class="alert alert-success" role="alert"></div>
-        <div class="container" id="block1">
+        <div class="container well" id="block1">
           <h1 style="font-size: 125px;"><span class="problem" style="color:#2a80b9;"></span></h1>
       </div>
     </div>
@@ -103,7 +103,7 @@
               {
                 answer();
               }
-              
+
             }
 
         });
@@ -160,7 +160,7 @@
   }
   else
     $(".alert-success").html("You have reached the end of the line, literally we can't go any further!");
-    
+
   }
   function right(){
     if(currPos<10){
@@ -172,8 +172,8 @@
     }
     else
         $(".alert-success").html("You have reached the end, look there's no more try going the other way. :)");
-       
-        
+
+
   }
 
   function answer()
@@ -182,9 +182,9 @@
     if(currPos == solution)
       {
         $(".problem").html(digit1.toString() + " - "   + digit2.toString() +  " = "+ solution );
-       
+
        $(".alert-success").html("You got it!, congratulations open your hand for a new question");
-       
+
         }else
           $(".alert-success").html("You sort of missed the mark, try again or open your hand for a new question");
 
