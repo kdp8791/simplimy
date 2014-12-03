@@ -1,9 +1,14 @@
-var express = require('express');
-var router = express.Router();
+/*
+ *  GET Home 
+ */
+ exports.index = function(req, res) {
+ 	res.render('index');
+ };
 
-/* GET home page. */
-router.get('/', function(req, res) {
-  res.render('index', { title: 'Express' });
-});
 
-module.exports = router;
+/*
+ *  GET Getting Started 
+ */
+ exports.getting_started = function(req, res) {
+ 	res.render('getting_started');
+ };
