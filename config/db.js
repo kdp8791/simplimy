@@ -1,3 +1,3 @@
 module.exports = {
-	url: 'mongodb://<user>:<pass>@<url>'
+	url: 'mongodb://uat:my_password@localhost/simplimy'
 }
