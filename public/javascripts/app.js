@@ -1,0 +1,1 @@
+angular.module('simplimyApp', ['ngRoute', 'appRoutes', 'MainCtrl']);
